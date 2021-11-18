@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Caso_de_Estudio.Models.Reservacion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Reservaciones Existentes</h3>
+        
+    </div>
+    <div class="card-body">
+
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fecha)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.horaEntrada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.horaSalida)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.observacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Computadora.nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Usuario.username)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TipoReservacion.nombreTipoR)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fecha)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.horaEntrada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.horaSalida)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.observacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Computadora.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Usuario.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoReservacion.nombreTipoR)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div> 

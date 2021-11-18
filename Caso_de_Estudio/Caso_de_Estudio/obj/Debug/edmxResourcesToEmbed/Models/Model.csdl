@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDLabTICModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Computadora">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="caract" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prog" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <Property Name="idLab" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Estado1" Relationship="Self.fk_estado_Computadora" FromRole="Computadora" ToRole="Estado" />
+    <NavigationProperty Name="Laboratorio" Relationship="Self.fk_laboratorio_idlab" FromRole="Computadora" ToRole="Laboratorio" />
+    <NavigationProperty Name="Reservacion" Relationship="Self.fk_Reservacion_pcReservacion" FromRole="Computadora" ToRole="Reservacion" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreEst" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Computadora" Relationship="Self.fk_estado_Computadora" FromRole="Estado" ToRole="Computadora" />
+    <NavigationProperty Name="Usuario" Relationship="Self.fk_estado_estado" FromRole="Estado" ToRole="Usuario" />
+    <NavigationProperty Name="Opcion" Relationship="Self.fk_estado_estadoOpcion" FromRole="Estado" ToRole="Opcion" />
+    <NavigationProperty Name="Laboratorio" Relationship="Self.fk_estado_Laboratorio" FromRole="Estado" ToRole="Laboratorio" />
+    <NavigationProperty Name="TipoReservacion" Relationship="Self.fk_estado_TipoReservacion" FromRole="Estado" ToRole="TipoReservacion" />
+    <NavigationProperty Name="Rol" Relationship="Self.fk_Rol_estado" FromRole="Estado" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="Laboratorio">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreLab" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="Int32" />
+    <NavigationProperty Name="Computadora" Relationship="Self.fk_laboratorio_idlab" FromRole="Laboratorio" ToRole="Computadora" />
+    <NavigationProperty Name="Estado1" Relationship="Self.fk_estado_Laboratorio" FromRole="Laboratorio" ToRole="Estado" />
+  </EntityType>
+  <EntityType Name="Opcion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreOpcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="descripcionOpcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="estadoOpcion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Estado" Relationship="Self.fk_estado_estadoOpcion" FromRole="Opcion" ToRole="Estado" />
+    <NavigationProperty Name="RolOpcion" Relationship="Self.fk_RolOpcion_idOpcion" FromRole="Opcion" ToRole="RolOpcion" />
+  </EntityType>
+  <EntityType Name="Reservacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idpersona" Type="Int32" Nullable="false" />
+    <Property Name="tipoR" Type="Int32" Nullable="false" />
+    <Property Name="pcReservacion" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="horaEntrada" Type="Time" Precision="7" />
+    <Property Name="horaSalida" Type="Time" Precision="7" />
+    <Property Name="observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Computadora" Relationship="Self.fk_Reservacion_pcReservacion" FromRole="Reservacion" ToRole="Computadora" />
+    <NavigationProperty Name="Usuario" Relationship="Self.fk_Reservacion_idpersona" FromRole="Reservacion" ToRole="Usuario" />
+    <NavigationProperty Name="TipoReservacion" Relationship="Self.fk_Reservacion_tipoR" FromRole="Reservacion" ToRole="TipoReservacion" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="idrol" />
+    </Key>
+    <Property Name="idrol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rolName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Estado1" Relationship="Self.fk_Rol_estado" FromRole="Rol" ToRole="Estado" />
+    <NavigationProperty Name="Usuario" Relationship="Self.fk_Rol_idRol" FromRole="Rol" ToRole="Usuario" />
+    <NavigationProperty Name="RolOpcion" Relationship="Self.fk_RolOpcion_idRol" FromRole="Rol" ToRole="RolOpcion" />
+  </EntityType>
+  <EntityType Name="RolOpcion">
+    <Key>
+      <PropertyRef Name="idRolOpciones" />
+    </Key>
+    <Property Name="idRolOpciones" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idOpcion" Type="Int32" Nullable="false" />
+    <Property Name="idRol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Opcion" Relationship="Self.fk_RolOpcion_idOpcion" FromRole="RolOpcion" ToRole="Opcion" />
+    <NavigationProperty Name="Rol" Relationship="Self.fk_RolOpcion_idRol" FromRole="RolOpcion" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="TipoReservacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreTipoR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="Int32" />
+    <NavigationProperty Name="Estado1" Relationship="Self.fk_estado_TipoReservacion" FromRole="TipoReservacion" ToRole="Estado" />
+    <NavigationProperty Name="Reservacion" Relationship="Self.fk_Reservacion_tipoR" FromRole="TipoReservacion" ToRole="Reservacion" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idRol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Estado1" Relationship="Self.fk_estado_estado" FromRole="Usuario" ToRole="Estado" />
+    <NavigationProperty Name="Reservacion" Relationship="Self.fk_Reservacion_idpersona" FromRole="Usuario" ToRole="Reservacion" />
+    <NavigationProperty Name="Rol" Relationship="Self.fk_Rol_idRol" FromRole="Usuario" ToRole="Rol" />
+  </EntityType>
+  <Association Name="fk_estado_Computadora">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+    <End Role="Computadora" Type="Self.Computadora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Computadora">
+        <PropertyRef Name="estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_laboratorio_idlab">
+    <End Role="Laboratorio" Type="Self.Laboratorio" Multiplicity="1" />
+    <End Role="Computadora" Type="Self.Computadora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratorio">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Computadora">
+        <PropertyRef Name="idLab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Reservacion_pcReservacion">
+    <End Role="Computadora" Type="Self.Computadora" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Computadora">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="pcReservacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_estado_estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_estado_estadoOpcion">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+    <End Role="Opcion" Type="Self.Opcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Opcion">
+        <PropertyRef Name="estadoOpcion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_estado_Laboratorio">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="Laboratorio" Type="Self.Laboratorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Laboratorio">
+        <PropertyRef Name="estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_estado_TipoReservacion">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="TipoReservacion" Type="Self.TipoReservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TipoReservacion">
+        <PropertyRef Name="estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Rol_estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+    <End Role="Rol" Type="Self.Rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Rol">
+        <PropertyRef Name="estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RolOpcion_idOpcion">
+    <End Role="Opcion" Type="Self.Opcion" Multiplicity="1" />
+    <End Role="RolOpcion" Type="Self.RolOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Opcion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RolOpcion">
+        <PropertyRef Name="idOpcion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Reservacion_idpersona">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="idpersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Reservacion_tipoR">
+    <End Role="TipoReservacion" Type="Self.TipoReservacion" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoReservacion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="tipoR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Rol_idRol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="idrol" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RolOpcion_idRol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolOpcion" Type="Self.RolOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="idrol" />
+      </Principal>
+      <Dependent Role="RolOpcion">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDLabTICEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Computadora" EntityType="Self.Computadora" />
+    <EntitySet Name="Estado" EntityType="Self.Estado" />
+    <EntitySet Name="Laboratorio" EntityType="Self.Laboratorio" />
+    <EntitySet Name="Opcion" EntityType="Self.Opcion" />
+    <EntitySet Name="Reservacion" EntityType="Self.Reservacion" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="RolOpcion" EntityType="Self.RolOpcion" />
+    <EntitySet Name="TipoReservacion" EntityType="Self.TipoReservacion" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="fk_estado_Computadora" Association="Self.fk_estado_Computadora">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Computadora" EntitySet="Computadora" />
+    </AssociationSet>
+    <AssociationSet Name="fk_laboratorio_idlab" Association="Self.fk_laboratorio_idlab">
+      <End Role="Laboratorio" EntitySet="Laboratorio" />
+      <End Role="Computadora" EntitySet="Computadora" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Reservacion_pcReservacion" Association="Self.fk_Reservacion_pcReservacion">
+      <End Role="Computadora" EntitySet="Computadora" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_estado_estado" Association="Self.fk_estado_estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="fk_estado_estadoOpcion" Association="Self.fk_estado_estadoOpcion">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Opcion" EntitySet="Opcion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_estado_Laboratorio" Association="Self.fk_estado_Laboratorio">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Laboratorio" EntitySet="Laboratorio" />
+    </AssociationSet>
+    <AssociationSet Name="fk_estado_TipoReservacion" Association="Self.fk_estado_TipoReservacion">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="TipoReservacion" EntitySet="TipoReservacion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Rol_estado" Association="Self.fk_Rol_estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Rol" EntitySet="Rol" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RolOpcion_idOpcion" Association="Self.fk_RolOpcion_idOpcion">
+      <End Role="Opcion" EntitySet="Opcion" />
+      <End Role="RolOpcion" EntitySet="RolOpcion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Reservacion_idpersona" Association="Self.fk_Reservacion_idpersona">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Reservacion_tipoR" Association="Self.fk_Reservacion_tipoR">
+      <End Role="TipoReservacion" EntitySet="TipoReservacion" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Rol_idRol" Association="Self.fk_Rol_idRol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RolOpcion_idRol" Association="Self.fk_RolOpcion_idRol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolOpcion" EntitySet="RolOpcion" />
+    </AssociationSet>
+    <FunctionImport Name="pc_reservaciones_personal" ReturnType="Collection(BDLabTICModel.pc_reservaciones_personal_Result)" />
+  </EntityContainer>
+  <ComplexType Name="pc_reservaciones_personal_Result">
+    <Property Type="String" Name="Nombre_Estudiante" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Apellido_Estudiante" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Rol" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Tipo_Reservacion" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Laboratorio" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Computadora" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+    <Property Type="Time" Name="Inicio" Nullable="true" />
+    <Property Type="Time" Name="Salida" Nullable="true" />
+    <Property Type="String" Name="Comentario" Nullable="true" MaxLength="100" />
+  </ComplexType>
+</Schema>

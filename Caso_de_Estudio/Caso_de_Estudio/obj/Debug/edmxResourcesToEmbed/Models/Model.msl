@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BDLabTICModelStoreContainer" CdmEntityContainer="BDLabTICEntities2">
+    <EntitySetMapping Name="Computadora">
+      <EntityTypeMapping TypeName="BDLabTICModel.Computadora">
+        <MappingFragment StoreEntitySet="Computadora">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="caract" ColumnName="caract" />
+          <ScalarProperty Name="prog" ColumnName="prog" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idLab" ColumnName="idLab" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estado">
+      <EntityTypeMapping TypeName="BDLabTICModel.Estado">
+        <MappingFragment StoreEntitySet="Estado">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombreEst" ColumnName="nombreEst" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Laboratorio">
+      <EntityTypeMapping TypeName="BDLabTICModel.Laboratorio">
+        <MappingFragment StoreEntitySet="Laboratorio">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombreLab" ColumnName="nombreLab" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Opcion">
+      <EntityTypeMapping TypeName="BDLabTICModel.Opcion">
+        <MappingFragment StoreEntitySet="Opcion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombreOpcion" ColumnName="nombreOpcion" />
+          <ScalarProperty Name="descripcionOpcion" ColumnName="descripcionOpcion" />
+          <ScalarProperty Name="estadoOpcion" ColumnName="estadoOpcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservacion">
+      <EntityTypeMapping TypeName="BDLabTICModel.Reservacion">
+        <MappingFragment StoreEntitySet="Reservacion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idpersona" ColumnName="idpersona" />
+          <ScalarProperty Name="tipoR" ColumnName="tipoR" />
+          <ScalarProperty Name="pcReservacion" ColumnName="pcReservacion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="horaEntrada" ColumnName="horaEntrada" />
+          <ScalarProperty Name="horaSalida" ColumnName="horaSalida" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rol">
+      <EntityTypeMapping TypeName="BDLabTICModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="idrol" ColumnName="idrol" />
+          <ScalarProperty Name="rolName" ColumnName="rolName" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolOpcion">
+      <EntityTypeMapping TypeName="BDLabTICModel.RolOpcion">
+        <MappingFragment StoreEntitySet="RolOpcion">
+          <ScalarProperty Name="idRolOpciones" ColumnName="idRolOpciones" />
+          <ScalarProperty Name="idOpcion" ColumnName="idOpcion" />
+          <ScalarProperty Name="idRol" ColumnName="idRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoReservacion">
+      <EntityTypeMapping TypeName="BDLabTICModel.TipoReservacion">
+        <MappingFragment StoreEntitySet="TipoReservacion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombreTipoR" ColumnName="nombreTipoR" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="BDLabTICModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="idRol" ColumnName="idRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="pc_reservaciones_personal" FunctionName="BDLabTICModel.Store.pc_reservaciones_personal">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDLabTICModel.pc_reservaciones_personal_Result">
+          <ScalarProperty Name="Nombre_Estudiante" ColumnName="Nombre_Estudiante" />
+          <ScalarProperty Name="Apellido_Estudiante" ColumnName="Apellido_Estudiante" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Tipo_Reservacion" ColumnName="Tipo_Reservacion" />
+          <ScalarProperty Name="Laboratorio" ColumnName="Laboratorio" />
+          <ScalarProperty Name="Computadora" ColumnName="Computadora" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Inicio" ColumnName="Inicio" />
+          <ScalarProperty Name="Salida" ColumnName="Salida" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

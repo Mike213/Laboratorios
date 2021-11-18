@@ -1,0 +1,75 @@
+﻿@model Caso_de_Estudio.Models.Reservacion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horaEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horaEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horaSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horaSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Computadora.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Computadora.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoReservacion.nombreTipoR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoReservacion.nombreTipoR)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

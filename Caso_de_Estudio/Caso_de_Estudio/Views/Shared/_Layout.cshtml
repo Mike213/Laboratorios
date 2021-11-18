@@ -467,6 +467,33 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-diamond"></i>
+                                    Tipos de reservación
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+
+                                        <i class="metismenu-icon"></i>
+
+                                        @Html.ActionLink("Buscar", "index", "TipoReservacions", new { area = "" }, new { @class = " " })
+
+                                    </li>
+
+                                    <li>
+
+                                        <i class="metismenu-icon"></i>
+
+                                        @Html.ActionLink("Registrar", "Create", "TipoReservacions", new { area = "" }, new { @class = " " })
+
+                                    </li>
+                                </ul>
+                            </li>
+
+
                         </ul>
                     </div>
                 </div>
@@ -495,7 +522,7 @@
                         </div>
                     </div>
 
-                    <div class="container">
+                    <div class="container row">
 
                         @RenderBody()
                     </div>

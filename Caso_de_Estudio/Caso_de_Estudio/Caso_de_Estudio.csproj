@@ -132,9 +132,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LaboratoriosController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\Reservacions1Controller.cs" />
     <Compile Include="Controllers\ReservacionsController.cs" />
-    <Compile Include="Controllers\TipoReservacions1Controller.cs" />
     <Compile Include="Controllers\TipoReservacionsController.cs" />
     <Compile Include="Filters\Seguridad.cs" />
     <Compile Include="Filters\Seguridad_Opciones.cs" />
@@ -476,11 +474,6 @@
     <Content Include="Views\Laboratorios\Details.cshtml" />
     <Content Include="Views\Laboratorios\Edit.cshtml" />
     <Content Include="Views\Laboratorios\Index.cshtml" />
-    <Content Include="Views\TipoReservacions1\Create.cshtml" />
-    <Content Include="Views\TipoReservacions1\Delete.cshtml" />
-    <Content Include="Views\TipoReservacions1\Details.cshtml" />
-    <Content Include="Views\TipoReservacions1\Edit.cshtml" />
-    <Content Include="Views\TipoReservacions1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,11 +6,8 @@
 }
 
 <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Reservaciones Existentes</h3>
-        
-    </div>
-    <div class="card-body">
+      
+    <div class="container">
 
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -73,7 +70,32 @@
                     </tr>
                 }
             </tbody>
-
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fecha)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.horaEntrada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.horaSalida)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.observacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Computadora.nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Usuario.username)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TipoReservacion.nombreTipoR)
+                    </th>
+                    <th></th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div> 

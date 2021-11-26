@@ -474,10 +474,14 @@
     <Content Include="Views\Laboratorios\Details.cshtml" />
     <Content Include="Views\Laboratorios\Edit.cshtml" />
     <Content Include="Views\Laboratorios\Index.cshtml" />
+    <Content Include="Views\Computadoras\Index.cshtml" />
+    <Content Include="Views\Computadoras\Create.cshtml" />
+    <Content Include="Views\Computadoras\Details.cshtml" />
+    <Content Include="Views\Computadoras\Edit.cshtml" />
+    <Content Include="Views\Computadoras\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Computadoras\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

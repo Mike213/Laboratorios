@@ -10,113 +10,107 @@ using Caso_de_Estudio.Models;
 
 namespace Caso_de_Estudio.Controllers
 {
-    public class LaboratoriosController : Controller
+    public class EstadoesController : Controller
     {
         private BDLabTICEntities3 db = new BDLabTICEntities3();
 
-        // GET: Laboratorios
+        // GET: Estadoes
         public ActionResult Index()
         {
-            var laboratorio = db.Laboratorio.Include(l => l.Estado1);
-            return View(laboratorio.ToList());
+            return View(db.Estado.ToList());
         }
 
-        // GET: Laboratorios/Details/5
+        // GET: Estadoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Laboratorio laboratorio = db.Laboratorio.Find(id);
-            if (laboratorio == null)
+            Estado estado = db.Estado.Find(id);
+            if (estado == null)
             {
                 return HttpNotFound();
             }
-            return View(laboratorio);
+            return View(estado);
         }
 
-        // GET: Laboratorios/Create
+        // GET: Estadoes/Create
         public ActionResult Create()
         {
-            ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst");
             return View();
         }
 
-        // POST: Laboratorios/Create
+        // POST: Estadoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombreLab,estado")] Laboratorio laboratorio)
+        public ActionResult Create([Bind(Include = "id,nombreEst")] Estado estado)
         {
             if (ModelState.IsValid)
             {
-                laboratorio.estado = 1;
-                db.Laboratorio.Add(laboratorio);
+                db.Estado.Add(estado);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst", laboratorio.estado);
-            return View(laboratorio);
+            return View(estado);
         }
 
-        // GET: Laboratorios/Edit/5
+        // GET: Estadoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Laboratorio laboratorio = db.Laboratorio.Find(id);
-            if (laboratorio == null)
+            Estado estado = db.Estado.Find(id);
+            if (estado == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst", laboratorio.estado);
-            return View(laboratorio);
+            return View(estado);
         }
 
-        // POST: Laboratorios/Edit/5
+        // POST: Estadoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombreLab,estado")] Laboratorio laboratorio)
+        public ActionResult Edit([Bind(Include = "id,nombreEst")] Estado estado)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(laboratorio).State = EntityState.Modified;
+                db.Entry(estado).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst", laboratorio.estado);
-            return View(laboratorio);
+            return View(estado);
         }
 
-        // GET: Laboratorios/Delete/5
+        // GET: Estadoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Laboratorio laboratorio = db.Laboratorio.Find(id);
-            if (laboratorio == null)
+            Estado estado = db.Estado.Find(id);
+            if (estado == null)
             {
                 return HttpNotFound();
             }
-            return View(laboratorio);
+            return View(estado);
         }
 
-        // POST: Laboratorios/Delete/5
+        // POST: Estadoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Laboratorio laboratorio = db.Laboratorio.Find(id);
-            db.Laboratorio.Remove(laboratorio);
+            Estado estado = db.Estado.Find(id);
+            db.Estado.Remove(estado);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

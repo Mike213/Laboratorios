@@ -58,7 +58,8 @@ namespace Caso_de_Estudio.Controllers
             {
 
                 var r = new Reservacion();
-                int idP = 1;
+                String temp = Convert.ToString(Session["id"]);
+                int idP = int.Parse(temp);
                 r.id = 0;
                 r.idpersona = idP;
                 r.horaEntrada = reservacion.horaEntrada;

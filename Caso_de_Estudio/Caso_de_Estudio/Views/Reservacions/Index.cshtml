@@ -6,8 +6,18 @@
 }
 
 <div class="card">
-      
-    <div class="container">
+    @using (Html.BeginForm("Index", "Reservacions", FormMethod.Post))
+    {
+        <div style="text-align:right; float:right;" >
+            <div class"row">
+                <div class="input-group ">
+                    @Html.TextBox("buscar", "", new { @class = "form-control" })
+                    <button type="submit" class="btn btn-dark">Buscar</button>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="container mt-5">
 
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -33,7 +43,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.TipoReservacion.nombreTipoR)
                     </th>
-                    <th></th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,9 +73,10 @@
                             @Html.DisplayFor(modelItem => item.TipoReservacion.nombreTipoR)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                            <span style="cursor:pointer;" title="Ver detalles"><a href="@Url.Action("Details", "Reservacions", new { id = item.id})" style="color:black;"><i class="fas fa-eye"></i></a></span>
+                            <span style="cursor:pointer;" title="Editar"><a href="@Url.Action("Edit", "Reservacions", new { id = item.id })" style="color:black;"><i class="fas fa-edit"></i></a></span>
+                            <span style="cursor:pointer;" title="Eliminar"><a href="@Url.Action("Delete", "Reservacions", new { id = item.id })" style="color:darkred;"><i class="fas fa-trash"></i></a></span>
+                            <span style="cursor:pointer;" title="Exportar a PDF"><a href="@Url.Action("Reporte", "Reservacions", new { id = item.id })" style="color:black;"><i class="fas fa-file-export"></i></a></span>
                         </td>
                     </tr>
                 }
@@ -93,7 +104,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.TipoReservacion.nombreTipoR)
                     </th>
-                    <th></th>
+                    <th>Acciones</th>
                 </tr>
             </tfoot>
         </table>

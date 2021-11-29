@@ -15,10 +15,16 @@ namespace Caso_de_Estudio.Controllers
         private BDLabTICEntities3 db = new BDLabTICEntities3();
 
         // GET: Computadoras
-        public ActionResult Index()
+        public ActionResult Index(string buscar = "")
         {
-            var computadora = db.Computadora.Include(c => c.Estado1).Include(c => c.Laboratorio);
-            return View(computadora.ToList());
+            var compu = from c in db.Computadora select c;
+
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                compu = compu.Where(c => c.nombre.Contains(buscar));
+            }
+
+            return View(compu.ToList());
         }
 
         // GET: Computadoras/Details/5
@@ -53,6 +59,7 @@ namespace Caso_de_Estudio.Controllers
         {
             if (ModelState.IsValid)
             {
+                computadora.estado = 1;
                 db.Computadora.Add(computadora);
                 db.SaveChanges();
                 return RedirectToAction("Index");

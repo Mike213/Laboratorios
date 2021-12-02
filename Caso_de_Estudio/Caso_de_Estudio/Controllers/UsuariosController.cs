@@ -13,7 +13,7 @@ namespace Caso_de_Estudio.Controllers
 
     public class UsuariosController : Controller
     {
-        private BDLabTICEntities3 db = new BDLabTICEntities3();
+        private BDLabTICEntities4 db = new BDLabTICEntities4();
 
         // GET: Usuarios
         public ActionResult Index()

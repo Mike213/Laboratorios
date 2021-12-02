@@ -12,7 +12,7 @@ namespace Caso_de_Estudio.Controllers
     public class LoginController : Controller
     {
 
-        private BDLabTICEntities3 db = new BDLabTICEntities3();
+        private BDLabTICEntities4 db = new BDLabTICEntities4();
         // GET: Login
         public ActionResult Borrar()
         {
@@ -28,7 +28,7 @@ namespace Caso_de_Estudio.Controllers
         {
             try
             {
-                using (Models.BDLabTICEntities3 db = new Models.BDLabTICEntities3())
+                using (Models.BDLabTICEntities4 db = new Models.BDLabTICEntities4())
                 {
                     var oUser = (from d in db.Usuario
                                  where d.email == User.Trim() && d.pwd == Pass.Trim()

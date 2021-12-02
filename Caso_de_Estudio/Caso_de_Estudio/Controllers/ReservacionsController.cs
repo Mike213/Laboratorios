@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Caso_de_Estudio.Models;
+using Microsoft.Reporting.WebForms;
 
 namespace Caso_de_Estudio.Controllers
 {
     public class ReservacionsController : Controller
     {
-        private BDLabTICEntities3 db = new BDLabTICEntities3();
+        private BDLabTICEntities4 db = new BDLabTICEntities4();
 
         // GET: Reservacions
         public ActionResult Index(String buscar)
@@ -21,6 +23,10 @@ namespace Caso_de_Estudio.Controllers
             if (!string.IsNullOrEmpty(buscar))
             {
                 reservacion = reservacion.Where(r => r.Computadora.nombre.Contains(buscar));
+
+
+
+
             }
 
 
@@ -148,6 +154,44 @@ namespace Caso_de_Estudio.Controllers
             db.Reservacion.Remove(reservacion);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult VerReporteReservacion(string tipo, string buscar = "")
+        {
+            LocalReport rpt = new LocalReport();
+            string mt, enc, f;
+            string[] s;
+            Warning[] w;
+
+
+            string ruta = Path.Combine(Server.MapPath("~/Reportes"), "RReservacion.rdlc");
+            string deviceInfo = @"<DeviceInfo>
+                      <MarginTop>0cm</MarginTop>
+                      <MarginLeft>0cm</MarginLeft>
+                      <MarginRight>0cm</MarginRight>
+                      <MarginBottom>0cm</MarginBottom>
+                        <EmbedFonts>None</EmbedFonts>
+                    </DeviceInfo>";
+
+            rpt.ReportPath = ruta;
+
+            BDLabTICEntities4 modelo = new BDLabTICEntities4();
+
+            List<VW_reservacion> lista = new List<VW_reservacion>();
+            var Reserv = from p in db.VW_reservacion select p;
+
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                Reserv = Reserv.Where(p => p.nombre.Equals(buscar));
+            }
+            lista = Reserv.ToList();
+
+            ReportDataSource rds = new ReportDataSource("DsReservacion", lista);
+            rpt.DataSources.Add(rds);
+
+            var b = rpt.Render(tipo, deviceInfo, out mt, out enc, out f, out s, out w);
+
+            return File(b, mt);
         }
 
         protected override void Dispose(bool disposing)

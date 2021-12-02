@@ -13,10 +13,10 @@ namespace Caso_de_Estudio.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BDLabTICEntities3 : DbContext
+    public partial class BDLabTICEntities4 : DbContext
     {
-        public BDLabTICEntities3()
-            : base("name=BDLabTICEntities3")
+        public BDLabTICEntities4()
+            : base("name=BDLabTICEntities4")
         {
         }
     
@@ -34,5 +34,8 @@ namespace Caso_de_Estudio.Models
         public virtual DbSet<RolOpcion> RolOpcion { get; set; }
         public virtual DbSet<TipoReservacion> TipoReservacion { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<vw_reservacion> vw_reservacion { get; set; }
+        public virtual DbSet<VW_Permisos> VW_Permisos { get; set; }
+        public virtual DbSet<VW_reservacion> VW_reservacion { get; set; }
     }
 }

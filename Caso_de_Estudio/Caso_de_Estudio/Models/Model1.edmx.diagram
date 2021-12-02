@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d0bdce30710a489487e1841377a32ec5" Name="Diagram1">
+      <Diagram DiagramId="fab9882a466b491e9c6b9c4fc1ea40dd" Name="Diagram1">
         <EntityTypeShape EntityType="BDLabTICModel.Computadora" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BDLabTICModel.Estado" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BDLabTICModel.Laboratorio" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
@@ -14,6 +14,9 @@
         <EntityTypeShape EntityType="BDLabTICModel.RolOpcion" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BDLabTICModel.TipoReservacion" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BDLabTICModel.Usuario" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLabTICModel.vw_computadora" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLabTICModel.VW_Permisos" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDLabTICModel.VW_reservacion" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="BDLabTICModel.fk_estado_Computadora" ManuallyRouted="false" />
         <AssociationConnector Association="BDLabTICModel.fk_laboratorio_idlab" ManuallyRouted="false" />
         <AssociationConnector Association="BDLabTICModel.fk_Reservacion_pcReservacion" ManuallyRouted="false" />

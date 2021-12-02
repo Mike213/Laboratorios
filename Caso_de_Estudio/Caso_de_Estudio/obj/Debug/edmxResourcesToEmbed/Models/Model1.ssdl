@@ -86,6 +86,60 @@
     <Property Name="apellidos" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="idRol" Type="int" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDLabTIC.dbo.vw_computadora' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_computadora">
+    <Key>
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="caracteristicas" />
+      <PropertyRef Name="estado" />
+      <PropertyRef Name="nombreLab" />
+    </Key>
+    <Property Name="Expr1" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="caracteristicas" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="nombreLab" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDLabTIC.dbo.VW_Permisos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="VW_Permisos">
+    <Key>
+      <PropertyRef Name="idUser" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="rolName" />
+      <PropertyRef Name="idRolOpciones" />
+      <PropertyRef Name="nombreOpcion" />
+    </Key>
+    <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="rolName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="idRolOpciones" Type="int" Nullable="false" />
+    <Property Name="nombreOpcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="descripcionOpcion" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDLabTIC.dbo.VW_reservacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="VW_reservacion">
+    <Key>
+      <PropertyRef Name="nombreTipoR" />
+      <PropertyRef Name="descripcion" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="caracteristicas" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="nombreLab" />
+    </Key>
+    <Property Name="nombreTipoR" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fecha" Type="date" Nullable="false" />
+    <Property Name="horaEntrada" Type="time" Precision="7" />
+    <Property Name="horaSalida" Type="time" Precision="7" />
+    <Property Name="observacion" Type="nvarchar" MaxLength="100" />
+    <Property Name="caracteristicas" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombreLab" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
   <Association Name="fk_estado_Computadora">
     <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
     <End Role="Computadora" Type="Self.Computadora" Multiplicity="*" />
@@ -252,6 +306,38 @@
     <EntitySet Name="RolOpcion" EntityType="Self.RolOpcion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoReservacion" EntityType="Self.TipoReservacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_computadora" EntityType="Self.vw_computadora" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_computadora].[Expr1] AS [Expr1], 
+    [vw_computadora].[nombre] AS [nombre], 
+    [vw_computadora].[caracteristicas] AS [caracteristicas], 
+    [vw_computadora].[estado] AS [estado], 
+    [vw_computadora].[nombreLab] AS [nombreLab]
+    FROM [dbo].[vw_computadora] AS [vw_computadora]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_Permisos" EntityType="Self.VW_Permisos" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_Permisos].[idUser] AS [idUser], 
+    [VW_Permisos].[username] AS [username], 
+    [VW_Permisos].[rolName] AS [rolName], 
+    [VW_Permisos].[idRolOpciones] AS [idRolOpciones], 
+    [VW_Permisos].[nombreOpcion] AS [nombreOpcion], 
+    [VW_Permisos].[descripcionOpcion] AS [descripcionOpcion]
+    FROM [dbo].[VW_Permisos] AS [VW_Permisos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_reservacion" EntityType="Self.VW_reservacion" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_reservacion].[nombreTipoR] AS [nombreTipoR], 
+    [VW_reservacion].[descripcion] AS [descripcion], 
+    [VW_reservacion].[fecha] AS [fecha], 
+    [VW_reservacion].[horaEntrada] AS [horaEntrada], 
+    [VW_reservacion].[horaSalida] AS [horaSalida], 
+    [VW_reservacion].[observacion] AS [observacion], 
+    [VW_reservacion].[caracteristicas] AS [caracteristicas], 
+    [VW_reservacion].[nombre] AS [nombre], 
+    [VW_reservacion].[nombreLab] AS [nombreLab]
+    FROM [dbo].[VW_reservacion] AS [VW_reservacion]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="fk_estado_Computadora" Association="Self.fk_estado_Computadora">
       <End Role="Estado" EntitySet="Estado" />
       <End Role="Computadora" EntitySet="Computadora" />

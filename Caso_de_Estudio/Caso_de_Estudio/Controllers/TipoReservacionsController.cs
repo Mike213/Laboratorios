@@ -12,7 +12,7 @@ namespace Caso_de_Estudio.Controllers
 {
     public class TipoReservacionsController : Controller
     {
-        private BDLabTICEntities3 db = new BDLabTICEntities3();
+        private BDLabTICEntities4 db = new BDLabTICEntities4();
 
         // GET: TipoReservacions
         public ActionResult Index(String buscar)

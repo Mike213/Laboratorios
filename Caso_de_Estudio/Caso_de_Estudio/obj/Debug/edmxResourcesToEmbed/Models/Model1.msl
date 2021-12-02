@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="BDLabTICModelStoreContainer" CdmEntityContainer="BDLabTICEntities3">
+  <EntityContainerMapping StorageEntityContainer="BDLabTICModelStoreContainer" CdmEntityContainer="BDLabTICEntities4">
     <EntitySetMapping Name="Computadora">
       <EntityTypeMapping TypeName="BDLabTICModel.Computadora">
         <MappingFragment StoreEntitySet="Computadora">
@@ -93,6 +93,44 @@
           <ScalarProperty Name="nombres" ColumnName="nombres" />
           <ScalarProperty Name="apellidos" ColumnName="apellidos" />
           <ScalarProperty Name="idRol" ColumnName="idRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_computadora">
+      <EntityTypeMapping TypeName="BDLabTICModel.vw_computadora">
+        <MappingFragment StoreEntitySet="vw_computadora">
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="caracteristicas" ColumnName="caracteristicas" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="nombreLab" ColumnName="nombreLab" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Permisos">
+      <EntityTypeMapping TypeName="BDLabTICModel.VW_Permisos">
+        <MappingFragment StoreEntitySet="VW_Permisos">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="rolName" ColumnName="rolName" />
+          <ScalarProperty Name="idRolOpciones" ColumnName="idRolOpciones" />
+          <ScalarProperty Name="nombreOpcion" ColumnName="nombreOpcion" />
+          <ScalarProperty Name="descripcionOpcion" ColumnName="descripcionOpcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_reservacion">
+      <EntityTypeMapping TypeName="BDLabTICModel.VW_reservacion">
+        <MappingFragment StoreEntitySet="VW_reservacion">
+          <ScalarProperty Name="nombreTipoR" ColumnName="nombreTipoR" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="horaEntrada" ColumnName="horaEntrada" />
+          <ScalarProperty Name="horaSalida" ColumnName="horaSalida" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="caracteristicas" ColumnName="caracteristicas" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="nombreLab" ColumnName="nombreLab" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

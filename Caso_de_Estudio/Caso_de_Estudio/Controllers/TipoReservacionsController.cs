@@ -15,9 +15,14 @@ namespace Caso_de_Estudio.Controllers
         private BDLabTICEntities3 db = new BDLabTICEntities3();
 
         // GET: TipoReservacions
-        public ActionResult Index()
+        public ActionResult Index(String buscar)
         {
             var tipoReservacion = db.TipoReservacion.Include(t => t.Estado1);
+
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                tipoReservacion = tipoReservacion.Where(t => t.nombreTipoR.Contains(buscar));
+            }
             return View(tipoReservacion.ToList());
         }
 
@@ -52,9 +57,18 @@ namespace Caso_de_Estudio.Controllers
         {
             if (ModelState.IsValid)
             {
+                var existe = (from d in db.TipoReservacion where d.nombreTipoR == tipoReservacion.nombreTipoR select d).FirstOrDefault();
+
+                if (existe == null)
+
+                {
+
+                    tipoReservacion.estado = 1;
                 db.TipoReservacion.Add(tipoReservacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
+                }
             }
 
             ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst", tipoReservacion.estado);
@@ -86,9 +100,12 @@ namespace Caso_de_Estudio.Controllers
         {
             if (ModelState.IsValid)
             {
+              
+                    tipoReservacion.estado = 2;
                 db.Entry(tipoReservacion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+             
             }
             ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst", tipoReservacion.estado);
             return View(tipoReservacion);

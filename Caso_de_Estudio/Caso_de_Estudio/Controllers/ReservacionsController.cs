@@ -15,9 +15,15 @@ namespace Caso_de_Estudio.Controllers
         private BDLabTICEntities3 db = new BDLabTICEntities3();
 
         // GET: Reservacions
-        public ActionResult Index()
+        public ActionResult Index(String buscar)
         {
             var reservacion = db.Reservacion.Include(r => r.Computadora).Include(r => r.Usuario).Include(r => r.TipoReservacion);
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                reservacion = reservacion.Where(r => r.Computadora.nombre.Contains(buscar));
+            }
+
+
             return View(reservacion.ToList());
         }
 
@@ -39,9 +45,9 @@ namespace Caso_de_Estudio.Controllers
         // GET: Reservacions/Create
         public ActionResult Create()
         {
-            ViewBag.pcReservacion = new SelectList(db.Computadora, "id", "nombre");
-            ViewBag.idpersona = new SelectList(db.Usuario, "idUser", "username");
-            ViewBag.tipoR = new SelectList(db.TipoReservacion, "id", "nombreTipoR");
+            ViewBag.pcReservacion = new SelectList(db.Computadora.Where(c => c.estado == 1 || c.estado == 2), "id", "nombre");
+            ViewBag.idpersona = new SelectList(db.Usuario.Where(u => u.estado == 1 || u.estado == 2), "idUser", "username");
+            ViewBag.tipoR = new SelectList(db.TipoReservacion.Where(t => t.estado == 1 || t.estado == 2), "id", "nombreTipoR");
             return View();
         }
 
@@ -75,9 +81,9 @@ namespace Caso_de_Estudio.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.pcReservacion = new SelectList(db.Computadora, "id", "nombre", reservacion.pcReservacion);
-            ViewBag.idpersona = new SelectList(db.Usuario, "idUser", "username", reservacion.idpersona);
-            ViewBag.tipoR = new SelectList(db.TipoReservacion, "id", "nombreTipoR", reservacion.tipoR);
+            ViewBag.pcReservacion = new SelectList(db.Computadora.Where(c => c.estado == 1 || c.estado == 2), "id", "nombre", reservacion.pcReservacion);
+            ViewBag.idpersona = new SelectList(db.Usuario.Where(c => c.estado == 1 || c.estado == 2), "idUser", "username", reservacion.idpersona);
+            ViewBag.tipoR = new SelectList(db.TipoReservacion.Where(t => t.estado == 1 || t.estado == 2), "id", "nombreTipoR", reservacion.tipoR);
             return View(reservacion);
         }
 
@@ -93,9 +99,9 @@ namespace Caso_de_Estudio.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.pcReservacion = new SelectList(db.Computadora, "id", "nombre", reservacion.pcReservacion);
-            ViewBag.idpersona = new SelectList(db.Usuario, "idUser", "username", reservacion.idpersona);
-            ViewBag.tipoR = new SelectList(db.TipoReservacion, "id", "nombreTipoR", reservacion.tipoR);
+            ViewBag.pcReservacion = new SelectList(db.Computadora.Where(c => c.estado == 1 || c.estado == 2), "id", "nombre", reservacion.pcReservacion);
+            ViewBag.idpersona = new SelectList(db.Usuario.Where(u => u.estado == 1 || u.estado == 2), "idUser", "username", reservacion.idpersona);
+            ViewBag.tipoR = new SelectList(db.TipoReservacion.Where(t => t.estado == 1 || t.estado == 2), "id", "nombreTipoR", reservacion.tipoR);
             return View(reservacion);
         }
 

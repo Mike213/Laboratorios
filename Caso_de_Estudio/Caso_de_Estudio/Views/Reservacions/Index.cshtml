@@ -8,9 +8,9 @@
 <div class="card">
     @using (Html.BeginForm("Index", "Reservacions", FormMethod.Post))
     {
-        <div style="text-align:right; float:right;" >
-            <div class"row">
-                <div class="input-group ">
+        <div  class="mt-3 container" >
+            <div class="row" style="text-align:right; float:right;" >
+                <div class="input-group mr-3">
                     @Html.TextBox("buscar", "", new { @class = "form-control" })
                     <button type="submit" class="btn btn-dark">Buscar</button>
                 </div>

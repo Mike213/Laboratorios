@@ -15,9 +15,15 @@ namespace Caso_de_Estudio.Controllers
         private BDLabTICEntities3 db = new BDLabTICEntities3();
 
         // GET: Laboratorios
-        public ActionResult Index()
+        public ActionResult Index(String buscar)
         {
             var laboratorio = db.Laboratorio.Include(l => l.Estado1);
+
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                laboratorio = laboratorio.Where(l=> l.nombreLab.Contains(buscar));
+            }
+
             return View(laboratorio.ToList());
         }
 
@@ -87,6 +93,7 @@ namespace Caso_de_Estudio.Controllers
         {
             if (ModelState.IsValid)
             {
+                laboratorio.estado = 2;
                 db.Entry(laboratorio).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -116,7 +123,8 @@ namespace Caso_de_Estudio.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Laboratorio laboratorio = db.Laboratorio.Find(id);
-            db.Laboratorio.Remove(laboratorio);
+            laboratorio.estado = 2;
+            db.Entry(laboratorio).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -19,6 +19,8 @@ namespace Caso_de_Estudio.Controllers
         {
             var compu = from c in db.Computadora select c;
 
+            compu = compu.Where(c => c.estado.Equals(2) || c.estado.Equals(1));
+
             if (!string.IsNullOrEmpty(buscar))
             {
                 compu = compu.Where(c => c.nombre.Contains(buscar));
@@ -46,7 +48,7 @@ namespace Caso_de_Estudio.Controllers
         public ActionResult Create()
         {
             ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst");
-            ViewBag.idLab = new SelectList(db.Laboratorio, "id", "nombreLab");
+            ViewBag.idLab = new SelectList(db.Laboratorio.Where(l=> l.estado == 1 || l.estado == 2), "id", "nombreLab");
             return View();
         }
 
@@ -66,7 +68,7 @@ namespace Caso_de_Estudio.Controllers
             }
 
             ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst", computadora.estado);
-            ViewBag.idLab = new SelectList(db.Laboratorio, "id", "nombreLab", computadora.idLab);
+            ViewBag.idLab = new SelectList(db.Laboratorio.Where(l => l.estado == 1 || l.estado == 2), "id", "nombreLab", computadora.idLab);
             return View(computadora);
         }
 
@@ -83,7 +85,7 @@ namespace Caso_de_Estudio.Controllers
                 return HttpNotFound();
             }
             ViewBag.estado = new SelectList(db.Estado, "id", "nombreEst", computadora.estado);
-            ViewBag.idLab = new SelectList(db.Laboratorio, "id", "nombreLab", computadora.idLab);
+            ViewBag.idLab = new SelectList(db.Laboratorio.Where(l => l.estado == 1 || l.estado == 2), "id", "nombreLab", computadora.idLab);
             return View(computadora);
         }
 
@@ -96,6 +98,8 @@ namespace Caso_de_Estudio.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                computadora.estado =2;
                 db.Entry(computadora).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -126,7 +130,7 @@ namespace Caso_de_Estudio.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Computadora computadora = db.Computadora.Find(id);
-            db.Computadora.Remove(computadora);
+            computadora.estado = 3;  
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -7,81 +7,79 @@
 
 <div class="card">
     @using (Html.BeginForm("Index", "Computadoras", FormMethod.Post))
-    {
-        
-        <div style="text-align:right; float:right;" class=" container mt-3">
-            <div class"row">
-                <div class="col-8"></div>
-                <div class="input-group col-4">
-                    @Html.TextBox("buscar", "", new { @class = "form-control w-20" })
-                    <button type="submit" class="btn btn-dark">Buscar</button>
+    {  
+            <div class="mt-3 container">
+                <div class="row" style="text-align:right; float:right;">
+                    <div class="input-group mr-3">
+                        @Html.TextBox("buscar", "", new { @class = "form-control" })
+                        <button type="submit" class="btn btn-dark">Buscar</button>
+                    </div>
                 </div>
             </div>
+        }
+        <div class="container mt-5">
+
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.caracteristicas)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Laboratorio.nombreLab)
+                        </th>
+
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.caracteristicas)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Laboratorio.nombreLab)
+                            </td>
+
+
+
+
+                            <td>
+                                <span style="cursor:pointer;" title="Ver detalles"><a href="@Url.Action("Details", "Computadoras", new { id = item.id})" style="color:black;"><i class="fas fa-eye"></i></a></span>
+                                <span style="cursor:pointer;" title="Editar"><a href="@Url.Action("Edit", "Computadoras", new { id = item.id })" style="color:black;"><i class="fas fa-edit"></i></a></span>
+                                <span style="cursor:pointer;" title="Eliminar"><a href="@Url.Action("Delete", "Computadoras", new { id = item.id })" style="color:darkred;"><i class="fas fa-trash"></i></a></span>
+                                <span style="cursor:pointer;" title="Exportar a PDF"><a href="@Url.Action("Reporte", "Computadoras", new { id = item.id })" style="color:black;"><i class="fas fa-file-export"></i></a></span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.caracteristicas)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Laboratorio.nombreLab)
+                        </th>
+
+
+                        <th>Acciones</th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
-    }
-    <div class="container mt-5">
-
-        <table id="example1" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.caracteristicas)
-                    </th> 
-                    <th>
-                        @Html.DisplayNameFor(model => model.Laboratorio.nombreLab)
-                    </th>
-
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.caracteristicas)
-                    </td>
-                    
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Laboratorio.nombreLab)
-                    </td>
-
-
-
-
-                    <td>
-                        <span style="cursor:pointer;" title="Ver detalles"><a href="@Url.Action("Details", "Computadoras", new { id = item.id})" style="color:black;"><i class="fas fa-eye"></i></a></span>
-                        <span style="cursor:pointer;" title="Editar"><a href="@Url.Action("Edit", "Computadoras", new { id = item.id })" style="color:black;"><i class="fas fa-edit"></i></a></span>
-                        <span style="cursor:pointer;" title="Eliminar"><a href="@Url.Action("Delete", "Computadoras", new { id = item.id })" style="color:darkred;"><i class="fas fa-trash"></i></a></span>
-                        <span style="cursor:pointer;" title="Exportar a PDF"><a href="@Url.Action("Reporte", "Computadoras", new { id = item.id })" style="color:black;"><i class="fas fa-file-export"></i></a></span>
-                    </td>
-                </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.caracteristicas)
-                    </th> 
-                    <th>
-                        @Html.DisplayNameFor(model => model.Laboratorio.nombreLab)
-                    </th>
-
-
-                    <th>Acciones</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-</div> 
+    </div> 

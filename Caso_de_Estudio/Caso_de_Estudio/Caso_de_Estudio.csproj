@@ -184,6 +184,11 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\DataSet\DSreportes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSreportes.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="architect\assets\FontAwesome\css\all.css" />
@@ -432,6 +437,17 @@
     </EntityDeploy>
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Reportes\DataSet\DSreportes.xsc">
+      <DependentUpon>DSreportes.xsd</DependentUpon>
+    </Content>
+    <None Include="Reportes\DataSet\DSreportes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSreportes.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\DataSet\DSreportes.xss">
+      <DependentUpon>DSreportes.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

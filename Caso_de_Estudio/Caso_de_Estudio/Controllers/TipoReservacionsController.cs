@@ -101,7 +101,7 @@ namespace Caso_de_Estudio.Controllers
             if (ModelState.IsValid)
             {
               
-                    tipoReservacion.estado = 2;
+                    tipoReservacion.estado = 1;
                 db.Entry(tipoReservacion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

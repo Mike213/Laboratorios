@@ -10,6 +10,7 @@ using Caso_de_Estudio.Models;
 
 namespace Caso_de_Estudio.Controllers
 {
+
     public class UsuariosController : Controller
     {
         private BDLabTICEntities3 db = new BDLabTICEntities3();

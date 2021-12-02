@@ -5,42 +5,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+ 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Laboratorio</h4>
-        <hr />
+<div class="card">
+    <div class="card-header">
+
+        <h1 class="card-title">
+            Editar Nombre del laboratorio
+        </h1>
+    </div>
+    <div class="form-horizontal card-body">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.nombreLab, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-12">
                 @Html.EditorFor(model => model.nombreLab, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.nombreLab, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.estado, "estado", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("estado", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+
+        <div class="form-group mt-5 mb-3">
+            <div class="col-md-offset-2 col-12">
+                <input type="submit" value="Guardar" class="btn btn-primary btn-block" />
             </div>
         </div>
+            <div class="form-group mt-5 mb-3">
+                  <div class="col-md-offset-2 col-12">
+                      <a class="btn btn-info btn-block" href="@Url.Action("Index", "Laboratorio")">Volver</a>
+                  </div>
+            </div>
+
+         
+         
     </div>
+</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

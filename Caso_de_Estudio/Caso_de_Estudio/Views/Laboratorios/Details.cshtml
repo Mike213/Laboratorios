@@ -5,31 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title">
+            Eliminacion del laboratorio
+        </h1>
+    </div>
+    <dl class="dl-horizontal mt-5 card-body">
 
-<div>
-    <h4>Laboratorio</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombreLab)
-        </dt>
-
-        <dd>
+        <dt class="card-title mt-2">
+            @Html.DisplayNameFor(model => model.nombreLab) :
             @Html.DisplayFor(model => model.nombreLab)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado1.nombreEst)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Estado1.nombreEst)
-        </dd>
+        <dt class="card-title mt-2 mb-5">
+            @Html.DisplayNameFor(model => model.Estado1.nombreEst) :
 
+            @Html.DisplayFor(model => model.Estado1.nombreEst)
+        </dt>
+        
+        <div class="form-group mt-5 mb-3">
+            <div class="col-md-offset-2 col-12">
+                <a class="btn btn-info btn-block" href="@Url.Action("Index", "Laboratorios")">Volver</a>
+            </div>
+        </div>
     </dl>
+   
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

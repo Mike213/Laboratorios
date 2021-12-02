@@ -5,14 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
- 
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal card">
-         
+
+<div class="card">
+
+    <div class="card-header mt-2 mb-2">
+        <h3 vlass="card-text text-center">Registrar un nuevo tipo de reservación </h3>
+    </div>
+
+
+    <div class="form-horizontal card-body">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.nombreTipoR, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -30,16 +37,15 @@
             </div>
         </div>
 
-        
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary btn-block"  />
+                <input type="submit" value="Guardar" class="btn btn-primary btn-block" />
             </div>
         </div>
     </div>
+</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+ 

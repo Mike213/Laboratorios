@@ -5,71 +5,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+ 
 
-<div>
-    <h4>Reservacion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha)
-        </dt>
-
-        <dd>
+<div class="card container">
+    <dl class="dl-horizontal mt-5 ">
+        <dt class="card-title mt-2">
+            @Html.DisplayNameFor(model => model.fecha)  :
             @Html.DisplayFor(model => model.fecha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.horaEntrada)
         </dt>
 
-        <dd>
+
+        <dd class="card-title mt-2">
+            @Html.DisplayNameFor(model => model.horaEntrada) :
             @Html.DisplayFor(model => model.horaEntrada)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.horaSalida)
-        </dt>
-
-        <dd>
+        <dt class="card-title mt-2">
+            @Html.DisplayNameFor(model => model.horaSalida) :
             @Html.DisplayFor(model => model.horaSalida)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.observacion)
         </dt>
 
-        <dd>
+        <dd class="card-title mt-2">
+            @Html.DisplayNameFor(model => model.observacion) :
             @Html.DisplayFor(model => model.observacion)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Computadora.nombre)
-        </dt>
-
-        <dd>
+        <dt class="card-title mt-2">
+            @Html.DisplayNameFor(model => model.Computadora.nombre) :
             @Html.DisplayFor(model => model.Computadora.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario.username)
         </dt>
 
-        <dd>
+        <dt class="card-title mt-2">
+            @Html.DisplayNameFor(model => model.Usuario.username) :
             @Html.DisplayFor(model => model.Usuario.username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoReservacion.nombreTipoR)
         </dt>
 
-        <dd>
+        <dt class="card-title mt-2">
+            @Html.DisplayNameFor(model => model.TipoReservacion.nombreTipoR) :
             @Html.DisplayFor(model => model.TipoReservacion.nombreTipoR)
-        </dd>
+        </dt>
 
     </dl>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("volver", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

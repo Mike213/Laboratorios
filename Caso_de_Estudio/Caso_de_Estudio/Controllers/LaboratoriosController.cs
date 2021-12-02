@@ -129,6 +129,36 @@ namespace Caso_de_Estudio.Controllers
             return RedirectToAction("Index");
         }
 
+
+        ///
+
+
+
+        public ActionResult Recuperar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Laboratorio laboratorio = db.Laboratorio.Find(id);
+            if (laboratorio == null)
+            {
+                return HttpNotFound();
+            }
+            return View(laboratorio);
+        }
+
+        // POST: Laboratorios/Delete/5
+        [HttpPost, ActionName("Recuperar")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RecuperarConfirmed(int id)
+        {
+            Laboratorio laboratorio = db.Laboratorio.Find(id);
+            laboratorio.estado = 1;
+            db.Entry(laboratorio).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

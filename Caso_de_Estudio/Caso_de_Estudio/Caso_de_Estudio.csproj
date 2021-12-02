@@ -486,7 +486,6 @@
     <Content Include="Views\TipoReservacions\Delete.cshtml" />
     <Content Include="Views\TipoReservacions\Details.cshtml" />
     <Content Include="Views\TipoReservacions\Edit.cshtml" />
-    <Content Include="Views\TipoReservacions\Index.cshtml" />
     <Content Include="Views\Laboratorios\Create.cshtml" />
     <Content Include="Views\Laboratorios\Delete.cshtml" />
     <Content Include="Views\Laboratorios\Details.cshtml" />
@@ -495,7 +494,7 @@
     <Content Include="Views\Computadoras\Index.cshtml" />
     <Content Include="Views\Computadoras\Create.cshtml" />
     <Content Include="Views\Computadoras\Details.cshtml" />
-    <Content Include="Views\Computadoras\Edit.cshtml" />
+    <Content Include="Views\Computadoras\Edit2.cshtml" />
     <Content Include="Views\Computadoras\Delete.cshtml" />
     <Content Include="Views\Estadoes\Create.cshtml" />
     <Content Include="Views\Estadoes\Delete.cshtml" />
@@ -507,6 +506,9 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\TipoReservacions\Index.cshtml" />
+    <Content Include="Views\Computadoras\Edit.cshtml" />
+    <Content Include="Views\Laboratorios\Recuperar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

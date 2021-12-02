@@ -5,39 +5,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>TipoReservacion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombreTipoR)
-        </dt>
+<div class="card container ">
 
-        <dd>
+    <dl class="dl-horizontal card-body mt-5">
+        <dt class="card-title">
+            @Html.DisplayNameFor(model => model.nombreTipoR) :
             @Html.DisplayFor(model => model.nombreTipoR)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
         </dt>
 
-        <dd>
+
+
+        <dt class="card-title">
+            @Html.DisplayNameFor(model => model.descripcion) :
             @Html.DisplayFor(model => model.descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado1.nombreEst)
         </dt>
 
-        <dd>
+
+        <dt class="card-title">
+            @Html.DisplayNameFor(model => model.Estado1.nombreEst) :
             @Html.DisplayFor(model => model.Estado1.nombreEst)
-        </dd>
+        </dt>
+
+
 
     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        
+        <div class="form-actions no-color mt-2  mb-5">
+
+            <a class="btn btn-info btn-block" href="@Url.Action("Index", "Tiporeservacions")">Volver</a>
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
